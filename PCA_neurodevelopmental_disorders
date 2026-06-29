@@ -14,7 +14,7 @@ import seaborn as sns
 
 # 1.Data
 
-neuro_file = r"data/outcomes_data.xlsx"
+neuro_file = r"data/neurodevelopment_data.xlsx"
 pest_file  = r"data/pesticide_data.xlsx"
 
 df_neuro = pd.read_excel(neuro_file)
