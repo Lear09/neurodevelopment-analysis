@@ -1,9 +1,10 @@
+# ======================================
 Adjusted Linear Regression + Forest Plot - Pesticide exposure and cognitive development
 Author: Léa Ruch
 Description: Multiple linear regression models for each pesticide predicting developmental quotient (QD) at 3.5 years, adjusted for sociodemographic covariates.
 Methods: OLS regression (statsmodels), forest plot (matplotlib)
 Visualization: forest plot and Excel results table
-
+# ======================================
 
 import pandas as pd
 import numpy as np
