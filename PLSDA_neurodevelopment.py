@@ -1,8 +1,9 @@
+# ======================================
 PLA-DA Analysis - Pesticide exposure and neurodevelopemental disorders (ELFE cohort)
 Author: Léa Ruch
 Description: Partial Least Squares Discriminant Analysis to classsify children with and without neurodevelopmental disorders (NDD) based on pesticide exposure
 Methods: PLSRegression (scikit-learn), loading plots, stability analysis
-
+# ======================================
 
 
 import pandas as pd
