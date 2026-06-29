@@ -12,9 +12,8 @@ from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# ===============================
-# 1. LOAD DATA
-# ===============================
+# 1.Data
+
 neuro_file = r"data/outcomes_data.xlsx"
 pest_file  = r"data/pesticide_data.xlsx"
 
@@ -24,17 +23,16 @@ df_pest  = pd.read_excel(pest_file)
 # Merge on ID
 df = pd.merge(df_neuro, df_pest, on='ID', how='inner')
 
-# ===============================
-# 2. SELECT PESTICIDE COLUMNS
-# ===============================
+# 2.Select pesticide collunms
+
 exclude_cols = ['ID', 'NND', 'TSA', 'langage', 'attention',
                 'comportement', 'psy', 'macarthur_2y', 'cdi_3,5y',
                 'RD_3,5y', 'sex', 'birth size', 'birth weight', 'head circumference','educ_mother', 'educ_father', 'pro_mother', 'pro_father']
 pesticide_cols = [col for col in df.columns if col not in exclude_cols]
 
-# ===============================
-# 3. PREPARE DATA
-# ===============================
+
+# 3.Data
+
 X = df[pesticide_cols].apply(pd.to_numeric, errors='coerce').fillna(df[pesticide_cols].median())
 y = df['NND'].values  # 0 = healthy, 1 = NDD
 groups = ['Healthy' if val==0 else 'NDD' for val in y]
@@ -43,18 +41,17 @@ groups = ['Healthy' if val==0 else 'NDD' for val in y]
 scaler = StandardScaler()
 X_std = scaler.fit_transform(X)
 
-# ===============================
-# 4. PCA
-# ===============================
+
+# 4.PCA
+
 pca = PCA(n_components=2)
 X_pca = pca.fit_transform(X_std)
 
-# Explained variance
 explained_var = pca.explained_variance_ratio_
 
-# ===============================
-# 5. PLOT PCA
-# ===============================
+
+# 5.Plot PCA
+
 plt.figure(figsize=(8,6))
 palette = {'Healthy':'blue', 'NDD':'red'}
 
