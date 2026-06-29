@@ -1,7 +1,8 @@
+# ======================================
 PCA Analysis - Pesticide exposure data (ELFE cohort)
 Author: Léa Ruch
 Description: Principal Component Analysis of pesticide concentrations in prenatal hair samples from ELFE
-
+# ======================================
 
 
 import pandas as pd
