@@ -1,6 +1,8 @@
+# ======================================
 BKMR Analysis - Pesticide mixture and neurodevelopement 
 Author: Léa Ruch 
 Description: Bayesian Kernel Machine Regression to estimate the joint effect of pesticide mixtures on developmental quotient (QD) in the ELFE cohort: include PIPs, overall mixture effect, single exposure effects and interactions
+# ======================================
 
 rm(list = ls())
 
