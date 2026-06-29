@@ -13,9 +13,9 @@ from sklearn.linear_model import ElasticNetCV
 from sklearn.preprocessing import StandardScaler
 from sklearn.utils import resample
 
-# ------------------------------
+
 # 1.Data
-# ------------------------------
+
 df = pd.read_excel("data/outcome_data.xlsx)  
 df_pest = pd.read_excel("data/pesticide_data.xlsx)  
 df = df.merge(df_pest, on="ID", how="inner")
@@ -23,28 +23,23 @@ df = df.merge(df_pest, on="ID", how="inner")
 outcome_var = "QD"
 y = df[outcome_var].values
 
-# ------------------------------
 # 2️.Pesticides + covariables
-# ------------------------------
-pesticides_columns = [
-   'γ-HCH',	'α-endosulfan',	'β-endosulfan',	'Heptachlor',	'PCP',	'HCB',	'Metazachlor', 'Metolachlor',	'IMPy',	'DMP',	'DMTP',	'DEP',	'DETP',	'TCPy',	'PNP',	'3Me4NP',	'Malathion CA',	'Permethrine',	'Cypermethrine',	'Tetramethrine',	'Cl2CA',	'ClCF3CA',	'4F3PBA',	'3-PBA',	'PCB 153',	'PCB 138',	'PCB 180',	'BDE 47',	'Mecoprop',	'MCPA',	'Dichlorprop',	'2,4-D',	'Difenoconazole',	'Imazalil',	'Propiconazole',	'Tebuconazole',	'Thiabendazole',	'Carbaryl',	'Carbendazim',	'Propoxur',	'Boscalid',	'Diflufenican',	'Imidacloprid',	'Thiacloprid',	'Oxadiazon',	'Fipronil',	'Fipronil sulfone',	'Azoxystrobin',	'Pyraclostrobin',	'Trifloxystrobin',	'Atrazine desethyl',	'Terbutryn',	'1-(3,4-dichlorophenyl)-3-methylurea',	'1-(3,4-dichlorophenyl)urea',	'Fenuron',	'Trifluraline',	'Pendimethalin',	'Spinosyn A' ,'Prosulfocarb',	'Lenacil',	'DMST',	'Bisphenol A',	'Bisphenol S',	'CDCA',	'Cotinine',	'Nicotine',	'Piperonyl Butoxide',	'MEHP',	'MEP'
 
-]
+pesticides_columns
 
 covariables = ["Sex", "Mother age", "Mother education", "Father education", "Mother occupation", "Father occupation", "Birth weight", "Birth size", "Head circumference"]
 
 X = df[pesticides_columns + covariables]
 X = X.apply(pd.to_numeric, errors='coerce').fillna(0)
 
-# ------------------------------
+
 # 3️.Standardize
-# ------------------------------
+
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
-# ------------------------------
 # 4️.Elastic Net CV
-# ------------------------------
+
 model = ElasticNetCV(l1_ratio=0.5, alphas=np.logspace(-3, 1, 100), cv=5, max_iter=5000, random_state=42)
 model.fit(X_scaled, y)
 
@@ -54,9 +49,8 @@ coef_retained = coef[coef != 0].sort_values()
 print("Variables retained by Elastic Net")
 print(coef_retained)
 
-# ------------------------------
 # 5️.Coefficient Paths
-# ------------------------------
+
 coefs_path = []
 for alpha in model.alphas_:
     enet = ElasticNetCV(l1_ratio=model.l1_ratio_, alphas=[alpha], cv=5, max_iter=5000)
@@ -74,9 +68,9 @@ plt.grid(False)
 plt.tight_layout()
 plt.show()
 
-# ------------------------------
+
 # 6️.Dot Plot of Selected Coefficients
-# ------------------------------
+
 coef_df = pd.DataFrame({'Variable': coef_retained.index, 'Coefficient': coef_retained.values})
 plt.figure(figsize=(8,6))
 sns.scatterplot(
@@ -96,9 +90,9 @@ plt.title("Selected Variables by Elastic Net")
 plt.tight_layout()
 plt.show()
 
-# ------------------------------
+
 # 7️.Stability Selection via Bootstrap
-# ------------------------------
+
 n_boot = 100
 selection_counts = pd.Series(0, index=X.columns)
 
