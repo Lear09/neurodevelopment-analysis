@@ -2,14 +2,14 @@
 Statistical analysis of pesticide exposure and neurodevelopmental outcomes — ELFE cohort
 
 # Neurodevelopment Analysis - ELFE cohort
-Statistical analysis of prenatal and postanatal pesticide exposure and neurodevelopmental outcomes in children from the ELFE French longitudinal birth cohort.
+Statistical analysis of prenatal and postanatal pesticide exposure and neurodevelopmental outcomes in children from the ELFE French longitudinal birth cohort
 
 # Author
 Léa Ruch - Master's in Cognitive and Integrative Neurosciences,
 University of Toulouse
 
 # Research context
-These scripts were developed during a research internship at the Luxembourg Institute of Health (LIH), Human Biomonitoring Research Unit, under the supervision of Dr: Brice Appenzeller and Dr. Linda Macheka.
+These scripts were developed during a research internship at the Luxembourg Institute of Health (LIH), Human Biomonitoring Research Unit, under the supervision of Dr. Brice Appenzeller and Dr. Linda Macheka
 
 # Scripts 
 ## elastic_net_neurodevelopment.py
